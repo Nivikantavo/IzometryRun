@@ -1,12 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bleeding : MonoBehaviour
 {
     private int _duration = 3;
     private int _damage = 1;
-    private WaitForSeconds _bleedingStep = new WaitForSeconds(1f);
     private Humanoid _target;
 
     private void Awake()
@@ -26,6 +24,8 @@ public class Bleeding : MonoBehaviour
 
     private IEnumerator BloodLoss()
     {
+        WaitForSeconds _bleedingStep = new WaitForSeconds(1f);
+
         for (int i = 0; i < _duration; i++)
         {
             _target.TakeDamage(_damage);

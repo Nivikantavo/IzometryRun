@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DistanceTransition : Transition
 {
@@ -12,7 +10,6 @@ public class DistanceTransition : Transition
     {
         _transitionsRange += Random.Range(-_rangedSpread, _rangedSpread);
         _transitionPoint = Target.transform.position;
-        //_transitionPoint = new Vector3(Target.gameObject.GetComponent<CapsuleCollider>().bounds.extents.x, transform.position.y, Target.gameObject.GetComponent<CapsuleCollider>().bounds.extents.z);
     }
     
     private void Update()

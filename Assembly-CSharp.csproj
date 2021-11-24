@@ -72,7 +72,6 @@
     <Compile Include="Assets\Scripts\Enemy\RayCheck.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\AttackState.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\DieState.cs" />
-    <Compile Include="Assets\Scripts\Enemy\States\FindingTargetState.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\PatrolState.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\PursuitState.cs" />
     <Compile Include="Assets\Scripts\Enemy\States\State.cs" />

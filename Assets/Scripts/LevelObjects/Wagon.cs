@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class Wagon : MonoBehaviour
 {
     [SerializeField] private int _damage;
@@ -13,6 +13,7 @@ public class Wagon : MonoBehaviour
     private float _tParameter;
     private bool _corutineAllowed;
     private WaitForSeconds _step = new WaitForSeconds(0.005f);
+
     private void Awake()
     {
         _currentPath = 0;

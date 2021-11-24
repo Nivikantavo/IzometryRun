@@ -19,10 +19,8 @@ namespace UnityEngine.AI
         bool m_IgnoreFromBuild;
         public bool ignoreFromBuild { get { return m_IgnoreFromBuild; } set { m_IgnoreFromBuild = value; } }
 
-        // List of agent types the modifier is applied for.
-        // Special values: empty == None, m_AffectedAgents[0] =-1 == All.
         [SerializeField]
-        List<int> m_AffectedAgents = new List<int>(new int[] { -1 });    // Default value is All
+        List<int> m_AffectedAgents = new List<int>(new int[] { -1 });
 
         static readonly List<NavMeshModifier> s_NavMeshModifiers = new List<NavMeshModifier>();
 
@@ -31,13 +29,13 @@ namespace UnityEngine.AI
             get { return s_NavMeshModifiers; }
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             if (!s_NavMeshModifiers.Contains(this))
                 s_NavMeshModifiers.Add(this);
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             s_NavMeshModifiers.Remove(this);
         }

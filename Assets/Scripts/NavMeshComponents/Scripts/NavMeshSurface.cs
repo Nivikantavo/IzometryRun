@@ -64,18 +64,15 @@ namespace UnityEngine.AI
         float m_VoxelSize;
         public float voxelSize { get { return m_VoxelSize; } set { m_VoxelSize = value; } }
 
-        // Currently not supported advanced options
         [SerializeField]
         bool m_BuildHeightMesh;
         public bool buildHeightMesh { get { return m_BuildHeightMesh; } set { m_BuildHeightMesh = value; } }
 
-        // Reference to whole scene navmesh data asset.
         [UnityEngine.Serialization.FormerlySerializedAs("m_BakedNavMeshData")]
         [SerializeField]
         NavMeshData m_NavMeshData;
         public NavMeshData navMeshData { get { return m_NavMeshData; } set { m_NavMeshData = value; } }
 
-        // Do not serialize - runtime only state.
         NavMeshDataInstance m_NavMeshDataInstance;
         Vector3 m_LastPosition = Vector3.zero;
         Quaternion m_LastRotation = Quaternion.identity;
@@ -87,13 +84,13 @@ namespace UnityEngine.AI
             get { return s_NavMeshSurfaces; }
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             Register(this);
             AddData();
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             RemoveData();
             Unregister(this);
@@ -146,8 +143,6 @@ namespace UnityEngine.AI
         {
             var sources = CollectSources();
 
-            // Use unscaled bounds - this differs in behaviour from e.g. collider components.
-            // But is similar to reflection probe - and since navmesh data has no scaling support - it is the right choice here.
             var sourcesBounds = new Bounds(m_Center, Abs(m_Size));
             if (m_CollectObjects == CollectObjects.All || m_CollectObjects == CollectObjects.Children)
             {
@@ -171,8 +166,6 @@ namespace UnityEngine.AI
         {
             var sources = CollectSources();
 
-            // Use unscaled bounds - this differs in behaviour from e.g. collider components.
-            // But is similar to reflection probe - and since navmesh data has no scaling support - it is the right choice here.
             var sourcesBounds = new Bounds(m_Center, Abs(m_Size));
             if (m_CollectObjects == CollectObjects.All || m_CollectObjects == CollectObjects.Children)
                 sourcesBounds = CalculateWorldBounds(sources);
@@ -180,7 +173,7 @@ namespace UnityEngine.AI
             return NavMeshBuilder.UpdateNavMeshDataAsync(data, GetBuildSettings(), sources, sourcesBounds);
         }
 
-        static void Register(NavMeshSurface surface)
+        private static void Register(NavMeshSurface surface)
         {
             if (s_NavMeshSurfaces.Count == 0)
                 NavMesh.onPreUpdate += UpdateActive;
@@ -189,7 +182,7 @@ namespace UnityEngine.AI
                 s_NavMeshSurfaces.Add(surface);
         }
 
-        static void Unregister(NavMeshSurface surface)
+        private static void Unregister(NavMeshSurface surface)
         {
             s_NavMeshSurfaces.Remove(surface);
 
@@ -197,15 +190,14 @@ namespace UnityEngine.AI
                 NavMesh.onPreUpdate -= UpdateActive;
         }
 
-        static void UpdateActive()
+        private static void UpdateActive()
         {
             for (var i = 0; i < s_NavMeshSurfaces.Count; ++i)
                 s_NavMeshSurfaces[i].UpdateDataIfTransformChanged();
         }
 
-        void AppendModifierVolumes(ref List<NavMeshBuildSource> sources)
+        private void AppendModifierVolumes(ref List<NavMeshBuildSource> sources)
         {
-            // Modifiers
             List<NavMeshModifierVolume> modifiers;
             if (m_CollectObjects == CollectObjects.Children)
             {
@@ -236,7 +228,7 @@ namespace UnityEngine.AI
             }
         }
 
-        List<NavMeshBuildSource> CollectSources()
+        private List<NavMeshBuildSource> CollectSources()
         {
             var sources = new List<NavMeshBuildSource>();
             var markups = new List<NavMeshBuildMarkup>();
@@ -292,12 +284,12 @@ namespace UnityEngine.AI
             return sources;
         }
 
-        static Vector3 Abs(Vector3 v)
+        private static Vector3 Abs(Vector3 v)
         {
             return new Vector3(Mathf.Abs(v.x), Mathf.Abs(v.y), Mathf.Abs(v.z));
         }
 
-        static Bounds GetWorldBounds(Matrix4x4 mat, Bounds bounds)
+        private static Bounds GetWorldBounds(Matrix4x4 mat, Bounds bounds)
         {
             var absAxisX = Abs(mat.MultiplyVector(Vector3.right));
             var absAxisY = Abs(mat.MultiplyVector(Vector3.up));
@@ -307,9 +299,8 @@ namespace UnityEngine.AI
             return new Bounds(worldPosition, worldSize);
         }
 
-        Bounds CalculateWorldBounds(List<NavMeshBuildSource> sources)
+        private Bounds CalculateWorldBounds(List<NavMeshBuildSource> sources)
         {
-            // Use the unscaled matrix for the NavMeshSurface
             Matrix4x4 worldToLocal = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
             worldToLocal = worldToLocal.inverse;
 
@@ -326,7 +317,6 @@ namespace UnityEngine.AI
                     }
                     case NavMeshBuildSourceShape.Terrain:
                     {
-                        // Terrain pivot is lower/left corner - shift bounds accordingly
                         var t = src.sourceObject as TerrainData;
                         result.Encapsulate(GetWorldBounds(worldToLocal * src.transform, new Bounds(0.5f * t.size, t.size)));
                         break;
@@ -339,19 +329,18 @@ namespace UnityEngine.AI
                         break;
                 }
             }
-            // Inflate the bounds a bit to avoid clipping co-planar sources
             result.Expand(0.1f);
             return result;
         }
 
-        bool HasTransformChanged()
+        private bool HasTransformChanged()
         {
             if (m_LastPosition != transform.position) return true;
             if (m_LastRotation != transform.rotation) return true;
             return false;
         }
 
-        void UpdateDataIfTransformChanged()
+        private void UpdateDataIfTransformChanged()
         {
             if (HasTransformChanged())
             {
@@ -361,23 +350,19 @@ namespace UnityEngine.AI
         }
 
 #if UNITY_EDITOR
-        bool UnshareNavMeshAsset()
+        private bool UnshareNavMeshAsset()
         {
-            // Nothing to unshare
             if (m_NavMeshData == null)
                 return false;
 
-            // Prefab parent owns the asset reference
             var prefabType = UnityEditor.PrefabUtility.GetPrefabType(this);
             if (prefabType == UnityEditor.PrefabType.Prefab)
                 return false;
 
-            // An instance can share asset reference only with its prefab parent
             var prefab = UnityEditor.PrefabUtility.GetPrefabParent(this) as NavMeshSurface;
             if (prefab != null && prefab.navMeshData == navMeshData)
                 return false;
 
-            // Don't allow referencing an asset that's assigned to another surface
             for (var i = 0; i < s_NavMeshSurfaces.Count; ++i)
             {
                 var surface = s_NavMeshSurfaces[i];
@@ -385,11 +370,10 @@ namespace UnityEngine.AI
                     return true;
             }
 
-            // Asset is not referenced by known surfaces
             return false;
         }
 
-        void OnValidate()
+        private void OnValidate()
         {
             if (UnshareNavMeshAsset())
             {
@@ -400,21 +384,18 @@ namespace UnityEngine.AI
             var settings = NavMesh.GetSettingsByID(m_AgentTypeID);
             if (settings.agentTypeID != -1)
             {
-                // When unchecking the override control, revert to automatic value.
                 const float kMinVoxelSize = 0.01f;
                 if (!m_OverrideVoxelSize)
                     m_VoxelSize = settings.agentRadius / 3.0f;
                 if (m_VoxelSize < kMinVoxelSize)
                     m_VoxelSize = kMinVoxelSize;
 
-                // When unchecking the override control, revert to default value.
                 const int kMinTileSize = 16;
                 const int kMaxTileSize = 1024;
                 const int kDefaultTileSize = 256;
 
                 if (!m_OverrideTileSize)
                     m_TileSize = kDefaultTileSize;
-                // Make sure tilesize is in sane range.
                 if (m_TileSize < kMinTileSize)
                     m_TileSize = kMinTileSize;
                 if (m_TileSize > kMaxTileSize)

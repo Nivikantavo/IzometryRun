@@ -1,12 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
-using UnityStandardAssets.Characters.ThirdPerson;
 
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(ThirdPersonCharacter))]
+[RequireComponent(typeof(RayCheck))]
+[RequireComponent(typeof(Enemy))]
 public class PatrolState : State
 {
     [SerializeField] private Transform[] _patrolPoints;

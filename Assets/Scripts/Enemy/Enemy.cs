@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(EnemyStateMachine))]
+[RequireComponent(typeof(RayCheck))]
 public class Enemy : Humanoid
 {
     [SerializeField] private int _damage;
@@ -42,6 +40,4 @@ public class Enemy : Humanoid
         _enemyStateMachine.Curent.enabled = false;
         _enemyStateMachine.enabled = false;
     }
-
-
 }

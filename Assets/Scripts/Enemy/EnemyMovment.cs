@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.ThirdPerson;
 
+[RequireComponent(typeof(StopState))]
+[RequireComponent(typeof(PursuitState))]
+[RequireComponent(typeof(PatrolState))]
+[RequireComponent(typeof(ThirdPersonCharacter))]
+[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMovment : MonoBehaviour
 {
     private Enemy _enemy;
@@ -32,7 +38,7 @@ public class EnemyMovment : MonoBehaviour
         Move();
     }
 
-    public void Move()
+    private void Move()
     {
         if (_needMove)
         {

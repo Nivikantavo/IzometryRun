@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityStandardAssets.Characters.ThirdPerson;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class DieState : State
 {
     private NavMeshAgent _agent;
@@ -16,21 +15,5 @@ public class DieState : State
     {
         _agent.speed = 0;
         _agent.SetDestination(transform.position);
-        
-    }
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
-    }
-
-    private void Update()
-    {
-        
     }
 }

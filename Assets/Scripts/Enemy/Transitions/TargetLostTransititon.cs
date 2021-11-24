@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(PursuitState))]
 public class TargetLostTransititon : Transition
 {
     private PursuitState _pursuitState;

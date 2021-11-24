@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Animator))]
+
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class Humanoid : MonoBehaviour
 {
@@ -53,8 +51,6 @@ public abstract class Humanoid : MonoBehaviour
     {
         if (_currentHealth < _health)
             _currentHealth += HeathUnits;
-        else
-            Debug.Log("Здоровье полное!");
 
         if (_currentHealth > _health)
         {

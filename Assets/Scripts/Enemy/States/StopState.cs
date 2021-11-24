@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Enemy))]
 public class StopState : State
 {
     private Enemy _enemy;

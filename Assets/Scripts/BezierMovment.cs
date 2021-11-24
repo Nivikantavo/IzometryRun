@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [ExecuteAlways]
 public class BezierMovment : MonoBehaviour
@@ -8,28 +6,29 @@ public class BezierMovment : MonoBehaviour
     [SerializeField] private Transform[] _pathPoints;
 
     [Range(0,1)]
-    public float t;
+    [SerializeField] private float _distanceTraveled;
 
-    void Update()
+    private void Update()
     {
-        MoveAlongPath(_pathPoints, t);
+        MoveAlongPath(_pathPoints, _distanceTraveled);
     }
 
-    private void MoveAlongPath(Transform[] path, float parameterT)
+    private void MoveAlongPath(Transform[] path, float distanceTraveled)
     {
-        transform.position = Bezier.GetPoint(path[0].position, path[1].position, path[2].position, path[3].position, parameterT);
-        transform.rotation = Quaternion.LookRotation(Bezier.GetFirstDerivative(path[0].position, path[1].position, path[2].position, _pathPoints[3].position, parameterT));
+        transform.position = Bezier.GetPoint(path[0].position, path[1].position, path[2].position, path[3].position, distanceTraveled);
+        transform.rotation = Quaternion.LookRotation(Bezier.GetFirstDerivative(path[0].position, path[1].position, path[2].position, _pathPoints[3].position, distanceTraveled));
     }
 
 
-    private void OnDrawGizmos() {
+    private void OnDrawGizmos() 
+    {
 
         int sigmentsNumber = 20;
         Vector3 preveousePoint = _pathPoints[0].position;
 
         for (int i = 0; i < sigmentsNumber + 1; i++) {
-            float paremeter = (float)i / sigmentsNumber;
-            Vector3 point = Bezier.GetPoint(_pathPoints[0].position, _pathPoints[1].position, _pathPoints[2].position, _pathPoints[3].position, paremeter);
+            float distanceTraveled = (float)i / sigmentsNumber;
+            Vector3 point = Bezier.GetPoint(_pathPoints[0].position, _pathPoints[1].position, _pathPoints[2].position, _pathPoints[3].position, distanceTraveled);
             Gizmos.DrawLine(preveousePoint, point);
             preveousePoint = point;
         }

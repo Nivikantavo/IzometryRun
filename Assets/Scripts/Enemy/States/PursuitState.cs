@@ -1,8 +1,11 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(RayCheck))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class PursuitState : State
 {
     private Enemy _enemy;

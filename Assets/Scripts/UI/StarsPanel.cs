@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class StarsPanel : MonoBehaviour
 {
-    [SerializeField] private EndLevelPanel _endLevelPanel;
-
     [SerializeField] private List<GameObject> _stars;
     [SerializeField] private Sprite _starsImage;
 

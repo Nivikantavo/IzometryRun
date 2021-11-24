@@ -47,14 +47,14 @@ namespace UnityEngine.AI
 
         static readonly List<NavMeshLink> s_Tracked = new List<NavMeshLink>();
 
-        void OnEnable()
+        private void OnEnable()
         {
             AddLink();
             if (m_AutoUpdatePosition && m_LinkInstance.valid)
                 AddTracking(this);
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
             RemoveTracking(this);
             m_LinkInstance.Remove();
@@ -82,7 +82,7 @@ namespace UnityEngine.AI
             s_Tracked.Add(link);
         }
 
-        static void RemoveTracking(NavMeshLink link)
+        private static void RemoveTracking(NavMeshLink link)
         {
             s_Tracked.Remove(link);
 
@@ -90,7 +90,7 @@ namespace UnityEngine.AI
                 NavMesh.onPreUpdate -= UpdateTrackedInstances;
         }
 
-        void SetAutoUpdate(bool value)
+        private void SetAutoUpdate(bool value)
         {
             if (m_AutoUpdatePosition == value)
                 return;
@@ -101,7 +101,7 @@ namespace UnityEngine.AI
                 RemoveTracking(this);
         }
 
-        void AddLink()
+        private void AddLink()
         {
 #if UNITY_EDITOR
             if (m_LinkInstance.valid)
@@ -127,19 +127,19 @@ namespace UnityEngine.AI
             m_LastRotation = transform.rotation;
         }
 
-        bool HasTransformChanged()
+        private bool HasTransformChanged()
         {
             if (m_LastPosition != transform.position) return true;
             if (m_LastRotation != transform.rotation) return true;
             return false;
         }
 
-        void OnDidApplyAnimationProperties()
+        private void OnDidApplyAnimationProperties()
         {
             UpdateLink();
         }
 
-        static void UpdateTrackedInstances()
+        private static void UpdateTrackedInstances()
         {
             foreach (var instance in s_Tracked)
             {
@@ -149,7 +149,7 @@ namespace UnityEngine.AI
         }
 
 #if UNITY_EDITOR
-        void OnValidate()
+        private void OnValidate()
         {
             m_Width = Mathf.Max(0.0f, m_Width);
 

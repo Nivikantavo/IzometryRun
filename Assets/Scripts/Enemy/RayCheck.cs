@@ -15,12 +15,12 @@ public class RayCheck : MonoBehaviour
     private Player _target;
     private Vector3 _lastTargetPosition;
     private bool _targetIsVisible;
-    
 
     public bool TargetIsVisible => _targetIsVisible;
 
     public event UnityAction Alarm;
     public event UnityAction<Vector3> TargetOutSight;
+
     private void Start()
     {
         _target = FindObjectOfType<Player>();
