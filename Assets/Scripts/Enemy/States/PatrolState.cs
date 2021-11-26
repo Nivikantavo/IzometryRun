@@ -17,8 +17,6 @@ public class PatrolState : State
     private int _currentPointNumber;
     private bool _isHolding = false;
     private bool _onWay = false;
-    private WaitForSeconds _timeBetweenRotation = new WaitForSeconds(1f);
-    private WaitForSeconds _timeStepRotation = new WaitForSeconds(0.00001f);
     private RayCheck _rayCheck;
     private Coroutine _lookAroundCor;
 
@@ -71,15 +69,18 @@ public class PatrolState : State
         _isHolding = true;
         _agent.speed = 0;
 
+        WaitForSeconds timeBetweenRotation = new WaitForSeconds(1f);
+        WaitForSeconds timeStepRotation = new WaitForSeconds(0.00001f);
+
         for(int i = -1; i <= 1; i += 2)
         {
             for(int j = 0; j < _angelRotation; j++)
             {
                 transform.Rotate(new Vector3(0, 1 * i, 0));
                 
-                yield return _timeStepRotation;
+                yield return timeStepRotation;
             }
-            yield return _timeBetweenRotation;
+            yield return timeBetweenRotation;
         }
         if (_currentPointNumber == _patrolPoints.Length - 1)
             _currentPointNumber = 0;
