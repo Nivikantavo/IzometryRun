@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class LevelLoader : MonoBehaviour
 {
     private LevelView[] _levelViews;
+
     private void Start()
     {
         _levelViews = FindObjectsOfType<LevelView>();

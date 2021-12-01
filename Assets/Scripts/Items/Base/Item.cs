@@ -6,6 +6,7 @@ public class Item : MonoBehaviour
 {
     [SerializeField] private string _name;
     [SerializeField] private Sprite _icon;
+
     private bool _wasPickedUp = false;
 
     private Player _user;

@@ -5,15 +5,15 @@ using UnityEngine.UI;
 
 public class LevelView : MonoBehaviour
 {
-    private TMP_Text _indexLabel;
-    private Level _level;
-    private Image[] _stars;
-    private AudioSource _audioSource;
-
     [SerializeField] private GameObject _starsPanel;
     [SerializeField] private GameObject _lock;
     [SerializeField] private Sprite _goldStar;
     [SerializeField] private AudioClip _clickSound;
+
+    private TMP_Text _indexLabel;
+    private Level _level;
+    private Image[] _stars;
+    private AudioSource _audioSource;
 
     public int Index => _level.Index;
 

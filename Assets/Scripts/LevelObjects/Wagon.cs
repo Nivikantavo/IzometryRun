@@ -31,12 +31,12 @@ public class Wagon : MonoBehaviour
 
     private void OnEnable()
     {
-        _wagonButton.ButtonClick += StartMoving;
+        _wagonButton.ButtonClicked += StartMoving;
     }
 
     private void OnDisable()
     {
-        _wagonButton.ButtonClick -= StartMoving;
+        _wagonButton.ButtonClicked -= StartMoving;
     }
 
     private void StartMoving()
@@ -77,6 +77,7 @@ public class Wagon : MonoBehaviour
         {
             _currentPath += 1;
             _corutineAllowed = true;
+            yield break;
         }
     }
 }

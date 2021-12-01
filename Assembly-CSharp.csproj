@@ -65,7 +65,6 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Bezier.cs" />
     <Compile Include="Assets\Scripts\BezierMovment.cs" />
-    <Compile Include="Assets\Scripts\Effects\Bleeding.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyMovment.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyStateMachine.cs" />

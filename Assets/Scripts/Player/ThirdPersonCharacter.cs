@@ -45,12 +45,12 @@ namespace UnityStandardAssets.Characters.ThirdPerson
 			m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 			m_OrigGroundCheckDistance = m_GroundCheckDistance;
 
-            m_humanoid.HumanDie += OnHumanDie;
+            m_humanoid.HumanDied += OnHumanDie;
         }
 
         private void OnDisable()
         {
-            m_humanoid.HumanDie -= OnHumanDie;
+            m_humanoid.HumanDied -= OnHumanDie;
             Move(transform.position, false, false);
         }
 

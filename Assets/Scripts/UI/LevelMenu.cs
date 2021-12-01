@@ -46,13 +46,13 @@ public class LevelMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.HumanDie += LevelEnd;
+        _player.HumanDied += LevelEnd;
         _exit.OnLevelCompleted += LevelEnd;
     }
 
     private void OnDisable()
     {
-        _player.HumanDie -= LevelEnd;
+        _player.HumanDied -= LevelEnd;
         _exit.OnLevelCompleted -= LevelEnd;
     }
 

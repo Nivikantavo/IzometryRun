@@ -2,10 +2,10 @@
 
 public class StarsCollector : MonoBehaviour
 {
-    private int _starsCollected;
+    private int _collected;
     private Star[] _stars;
 
-    public int StarsCollected => _starsCollected;
+    public int Collected => _collected;
 
     private void Awake()
     {
@@ -14,9 +14,9 @@ public class StarsCollector : MonoBehaviour
 
     private void OnEnable()
     {
-        foreach (var item in _stars)
+        foreach (var star in _stars)
         {
-            item.StarCollected += StarCollected;
+            star.Collected += StarCollected;
         }
     }
 
@@ -24,12 +24,12 @@ public class StarsCollector : MonoBehaviour
     {
         foreach (var item in _stars)
         {
-            item.StarCollected -= StarCollected;
+            item.Collected -= StarCollected;
         }
     }
 
     private void StarCollected()
     {
-        _starsCollected++;
+        _collected++;
     }
 }

@@ -14,7 +14,7 @@ public class EndLevelPanel : MonoBehaviour
     {
         _endText = GetComponentInChildren<TextMeshProUGUI>();
         _starsPanel = GetComponentInChildren<StarsPanel>();
-        StarsCollected = FindObjectOfType<StarsCollector>().StarsCollected;
+        StarsCollected = FindObjectOfType<StarsCollector>().Collected;
     }
 
     public void OpenPanel(bool won)

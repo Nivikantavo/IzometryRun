@@ -10,6 +10,7 @@ public class PatrolState : State
 {
     [SerializeField] private Transform[] _patrolPoints;
     [SerializeField] private int _angelRotation = 260;
+
     private NavMeshAgent _agent;
 
     private float _speed;

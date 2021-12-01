@@ -5,10 +5,10 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider))]
 public class LevelButton : Interactable
 {
-    [SerializeField] private bool disposable;
+    [SerializeField] private bool _disposable;
 
     private Vector3 _targetPosition;
-    public event UnityAction ButtonClick;
+    public event UnityAction ButtonClicked;
 
     private WaitForSeconds _deltaTime;
 
@@ -25,8 +25,8 @@ public class LevelButton : Interactable
 
         if (other.TryGetComponent<Player>(out Player player))
         {
-            ButtonClick?.Invoke();
-            if (disposable)
+            ButtonClicked?.Invoke();
+            if (_disposable)
             {
                 StartCoroutine(LowerButton());
                 enabled = false;

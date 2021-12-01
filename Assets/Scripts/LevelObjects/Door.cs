@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] private LevelButton _doorButton;
     [SerializeField] private bool _isOpen;
+
     private NavMeshObstacle _obstacle;
     private Animator _animator;
 
@@ -23,12 +24,12 @@ public class Door : MonoBehaviour
 
     private void OnEnable()
     {
-        _doorButton.ButtonClick += OnDoorButtonClick;
+        _doorButton.ButtonClicked += OnDoorButtonClick;
     }
 
     private void OnDisable()
     {
-        _doorButton.ButtonClick -= OnDoorButtonClick;
+        _doorButton.ButtonClicked -= OnDoorButtonClick;
     }
     private void OnDoorButtonClick()
     {

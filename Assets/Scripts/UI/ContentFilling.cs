@@ -56,7 +56,6 @@ public class ContentFilling : MonoBehaviour
             _levels[i].Score = levelsScors[i];
             if(i < _levels.Count - 1)
             {
-                Debug.Log(i + " " + _levels.Count);
                 if (_levels[i].Score > 0 && _levels[i + 1].Unlocked == false)
                 {
                     _levels[i + 1].Unlocked = true;

@@ -6,15 +6,15 @@ using UnityEngine.Events;
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class Humanoid : MonoBehaviour
 {
-    [SerializeField] protected int _health;
+    [SerializeField] protected int _maxHealth;
+
     protected int _currentHealth;
 
-    private bool _isDead = false;
     private NavMeshAgent _agent;
 
     public int CurrentHealth => _currentHealth;
 
-    public event UnityAction<bool> HumanDie;
+    public event UnityAction<bool> HumanDied;
 
     public virtual void DisableMovment()
     {
@@ -23,13 +23,9 @@ public abstract class Humanoid : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (_isDead == false)
-        {
-            _currentHealth -= damage;
-            Debug.Log(_currentHealth);
-        }
+        _currentHealth -= damage;
 
-        if (_currentHealth <= 0 && _isDead == false)
+        if (_currentHealth <= 0)
         {
             Die();
         }
@@ -37,24 +33,24 @@ public abstract class Humanoid : MonoBehaviour
 
     protected void Start()
     {
-        _currentHealth = _health;
+        _currentHealth = _maxHealth;
         _agent = GetComponent<NavMeshAgent>();
     }
 
     protected virtual void Die()
     {
-        _isDead = true;
-        HumanDie?.Invoke(false);
+        HumanDied?.Invoke(false);
+        enabled = false;
     }
 
     public void RestoreHealth(int HeathUnits)
     {
-        if (_currentHealth < _health)
+        if (_currentHealth < _maxHealth)
             _currentHealth += HeathUnits;
 
-        if (_currentHealth > _health)
+        if (_currentHealth > _maxHealth)
         {
-            _currentHealth = _health;
+            _currentHealth = _maxHealth;
         }
     }
 }
