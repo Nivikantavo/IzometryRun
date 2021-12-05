@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerData
 {
     private int[] _levelsScores;
+    private int _maxStarsCount = 3;
 
     public PlayerData(int levelIndex, int score)
     {
@@ -16,7 +17,7 @@ public class PlayerData
     {
         if (levelIndex <= _levelsScores.Length)
         {
-            if (score <= 3 && score >= 0 && score > _levelsScores[levelIndex - 1])
+            if (score <= _maxStarsCount && score >= 0 && score > _levelsScores[levelIndex - 1])
             {
                 _levelsScores[levelIndex - 1] = score;
             }
@@ -25,6 +26,13 @@ public class PlayerData
 
     public int[] GetProgress()
     {
-        return _levelsScores;
+        int[] tempArray = new int[_levelsScores.Length];
+
+        for (int i = 0; i < _levelsScores.Length; i++)
+        {
+            tempArray[i] = _levelsScores[i];
+        }
+
+        return tempArray;
     }
 }

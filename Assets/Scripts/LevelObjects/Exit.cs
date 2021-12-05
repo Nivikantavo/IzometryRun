@@ -4,13 +4,13 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider))]
 public class Exit : MonoBehaviour
 {
-    public event UnityAction<bool> OnLevelCompleted;
+    public event UnityAction<bool> LevelCompleted;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Player>(out Player player))
         {
-            OnLevelCompleted?.Invoke(true);
+            LevelCompleted?.Invoke(true);
         }
     }
 }

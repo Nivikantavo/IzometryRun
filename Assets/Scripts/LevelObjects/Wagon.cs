@@ -12,7 +12,6 @@ public class Wagon : MonoBehaviour
     private int _currentPath;
     private float _tParameter;
     private bool _corutineAllowed;
-    private WaitForSeconds _step = new WaitForSeconds(0.005f);
 
     private void Awake()
     {
@@ -31,15 +30,15 @@ public class Wagon : MonoBehaviour
 
     private void OnEnable()
     {
-        _wagonButton.ButtonClicked += StartMoving;
+        _wagonButton.ButtonClicked += OnStartMoving;
     }
 
     private void OnDisable()
     {
-        _wagonButton.ButtonClicked -= StartMoving;
+        _wagonButton.ButtonClicked -= OnStartMoving;
     }
 
-    private void StartMoving()
+    private void OnStartMoving()
     {
         _corutineAllowed = true;
     }
@@ -54,6 +53,7 @@ public class Wagon : MonoBehaviour
 
     private IEnumerator MoveWagon(int pathNumber)
     {
+        WaitForSeconds _step = new WaitForSeconds(0.005f);
         _corutineAllowed = false;
         Vector3[] currentPathPoints = new Vector3[4];
 

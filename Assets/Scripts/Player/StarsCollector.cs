@@ -2,10 +2,9 @@
 
 public class StarsCollector : MonoBehaviour
 {
-    private int _collected;
     private Star[] _stars;
 
-    public int Collected => _collected;
+    public int Collected { get; private set; }
 
     private void Awake()
     {
@@ -30,6 +29,6 @@ public class StarsCollector : MonoBehaviour
 
     private void StarCollected()
     {
-        _collected++;
+        Collected++;
     }
 }

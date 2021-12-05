@@ -44,7 +44,7 @@ public class ContentFilling : MonoBehaviour
 
     private void LoadProgress()
     {
-        PlayerData data = SaveSystem.LoadProgress();
+        PlayerData data = ConservationSystem.LoadProgress();
 
         int[] levelsScors = data.GetProgress();
 

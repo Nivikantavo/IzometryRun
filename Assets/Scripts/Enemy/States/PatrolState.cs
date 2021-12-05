@@ -91,6 +91,7 @@ public class PatrolState : State
         _agent.speed = _speed;
         _isHolding = false;
         _onWay = false;
+        yield break;
     }
 
     private void Alarm()

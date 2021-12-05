@@ -99,8 +99,8 @@
     <Compile Include="Assets\Scripts\Player\PlayerMovment.cs" />
     <Compile Include="Assets\Scripts\Player\StarsCollector.cs" />
     <Compile Include="Assets\Scripts\Player\ThirdPersonCharacter.cs" />
+    <Compile Include="Assets\Scripts\PlayerData\ConservationSystem.cs" />
     <Compile Include="Assets\Scripts\PlayerData\PlayerData.cs" />
-    <Compile Include="Assets\Scripts\PlayerData\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\UI\ContentFilling.cs" />
     <Compile Include="Assets\Scripts\UI\EndLevelPanel.cs" />
     <Compile Include="Assets\Scripts\UI\LevelLoader.cs" />

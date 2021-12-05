@@ -10,12 +10,10 @@ public class LevelButton : Interactable
     private Vector3 _targetPosition;
     public event UnityAction ButtonClicked;
 
-    private WaitForSeconds _deltaTime;
 
     private void Start()
     {
         _targetPosition = new Vector3(transform.position.x, transform.position.y - GetComponent<MeshRenderer>().bounds.size.y + 0.02f, transform.position.z);
-        _deltaTime = new WaitForSeconds(Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,10 +34,13 @@ public class LevelButton : Interactable
 
     private IEnumerator LowerButton()
     {
+        WaitForSeconds deltaTime = new WaitForSeconds(Time.deltaTime);
+
         for (float i = 0; i < 1; i += Time.deltaTime)
         {
             transform.position = Vector3.MoveTowards(transform.position, _targetPosition, Time.deltaTime);
-            yield return _deltaTime;
+            yield return deltaTime;
         }
+        yield break;
     }
 }

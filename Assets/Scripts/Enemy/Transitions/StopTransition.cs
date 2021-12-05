@@ -11,12 +11,12 @@ public class StopTransition : Transition
     protected override void OnEnable()
     {
         base.OnEnable();
-        _exit.OnLevelCompleted += NeedStop;
+        _exit.LevelCompleted += NeedStop;
     }
 
     private void OnDisable()
     {
-        _exit.OnLevelCompleted -= NeedStop;
+        _exit.LevelCompleted -= NeedStop;
     }
 
     private void NeedStop(bool complited)

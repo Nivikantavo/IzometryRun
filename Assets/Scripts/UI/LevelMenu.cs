@@ -46,17 +46,17 @@ public class LevelMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.HumanDied += LevelEnd;
-        _exit.OnLevelCompleted += LevelEnd;
+        _player.HumanDied += OnLevelEnd;
+        _exit.LevelCompleted += OnLevelEnd;
     }
 
     private void OnDisable()
     {
-        _player.HumanDied -= LevelEnd;
-        _exit.OnLevelCompleted -= LevelEnd;
+        _player.HumanDied -= OnLevelEnd;
+        _exit.LevelCompleted -= OnLevelEnd;
     }
 
-    private void LevelEnd(bool won)
+    private void OnLevelEnd(bool won)
     {
         _pauseButton.interactable = false;
         _endLevelPanel.OpenPanel(won);
@@ -76,6 +76,6 @@ public class LevelMenu : MonoBehaviour
 
     private void SaveProgress()
     {
-        SaveSystem.SaveProgress(_currentLevelIndex, _endLevelPanel.StarsCollected);
+        ConservationSystem.SaveProgress(_currentLevelIndex, _endLevelPanel.StarsCollected);
     }
 }

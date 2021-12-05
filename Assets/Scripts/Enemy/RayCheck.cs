@@ -46,8 +46,7 @@ public class RayCheck : MonoBehaviour
     private bool RayToScan()
     {
         bool result = false;
-        bool a = false;
-        bool b = false;
+        
         float rayStep = 0;
         float distanceMultiplier;
         for (int i = 0; i < _rays; i++)
@@ -61,18 +60,17 @@ public class RayCheck : MonoBehaviour
             Vector3 dir = transform.TransformDirection(new Vector3(x, 0, y));
 
             if (GetRaycast(dir, _maxDistance * distanceMultiplier))
-                a = true;
+                result = true;
 
             if (x != 0)
             {
                 dir = transform.TransformDirection(new Vector3(-x, 0, y));
                 if (GetRaycast(dir, _maxDistance * distanceMultiplier))
-                    b = true;
+                    result = true;
             }
         }
 
         Debug.DrawRay(transform.position + _offset, _target.transform.position - transform.position);
-        if (a || b) result = true;
         return result;
     }
 
