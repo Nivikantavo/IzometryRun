@@ -10,6 +10,7 @@ public class EndLevelPanel : MonoBehaviour
     private StarsPanel _starsPanel;
 
     public int StarsCollected;
+
     private void OnEnable()
     {
         _endText = GetComponentInChildren<TextMeshProUGUI>();

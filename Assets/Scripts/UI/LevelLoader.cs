@@ -14,6 +14,7 @@ public class LevelLoader : MonoBehaviour
             view.LevelSelected += OnLevelSelected;
         }
     }
+
     private void OnDisable()
     {
         foreach (var view in _levelViews)
@@ -21,6 +22,7 @@ public class LevelLoader : MonoBehaviour
             view.LevelSelected -= OnLevelSelected;
         }
     }
+
     public void OnLevelSelected(int SceneNumber, bool unloadingRequired = false)
     {
         if (unloadingRequired == true)

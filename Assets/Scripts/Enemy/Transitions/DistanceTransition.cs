@@ -6,6 +6,7 @@ public class DistanceTransition : Transition
     [SerializeField] private float _rangedSpread;
 
     private Vector3 _transitionPoint;
+
     private void Start()
     {
         _transitionsRange += Random.Range(-_rangedSpread, _rangedSpread);

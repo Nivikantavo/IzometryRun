@@ -11,16 +11,17 @@ public class Door : MonoBehaviour
 
     private NavMeshObstacle _obstacle;
     private Animator _animator;
-    private const string _open = "Open";
 
     public event UnityAction DoorOpened;
+
+    private const string Open = "Open";
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _obstacle = GetComponent<NavMeshObstacle>();
 
-        _animator.SetBool(_open, _isOpen);
+        _animator.SetBool(Open, _isOpen);
     }
 
     private void OnEnable()
@@ -32,10 +33,11 @@ public class Door : MonoBehaviour
     {
         _doorButton.ButtonClicked -= OnDoorButtonClick;
     }
+
     private void OnDoorButtonClick()
     {
         _isOpen = !_isOpen;
-        _animator.SetBool(_open, _isOpen);
+        _animator.SetBool(Open, _isOpen);
     }
 
     public void OpenDoor()

@@ -33,6 +33,7 @@ public class EnemyMovment : MonoBehaviour
 
         _agent.updateRotation = false;
     }
+
     private void Update()
     {
         Move();

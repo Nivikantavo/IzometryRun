@@ -10,7 +10,6 @@ public class LevelButton : Interactable
     private Vector3 _targetPosition;
     public event UnityAction ButtonClicked;
 
-
     private void Start()
     {
         _targetPosition = new Vector3(transform.position.x, transform.position.y - GetComponent<MeshRenderer>().bounds.size.y + 0.02f, transform.position.z);

@@ -8,6 +8,7 @@ public class Star : Interactable
     [SerializeField] private AudioClip _pickUpSound;
 
     public event UnityAction Collected;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Player>(out Player player))

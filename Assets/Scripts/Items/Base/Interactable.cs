@@ -11,7 +11,6 @@ public class Interactable : MonoBehaviour
     private Transform _playerPosition;
     public float InteractRadius => _interactRadius;
     public Transform InteractionTransform => _interactionTransform;
-    
 
     private void Update()
     {

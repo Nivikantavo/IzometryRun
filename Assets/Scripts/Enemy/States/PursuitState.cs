@@ -19,10 +19,12 @@ public class PursuitState : State
     private float _lastAttackTime;
     private bool _targetIsVisible;
     private Vector3 _lastTargetPosition;
-    private Vector3 _offset;
 
     public event UnityAction TargetLost;
     public event UnityAction<Vector3> NeedFollowingTarget;
+
+    private const string AttackTrigger = "Attack";
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -38,22 +40,16 @@ public class PursuitState : State
     private void Update()
     {
         _targetIsVisible = _rayCheck.TargetIsVisible;
-
-        _offset = (Target.transform.position - transform.position).normalized * _attackDistane;
         
         if (_targetIsVisible)
         {
-            _agent.SetDestination(Target.transform.position - _offset);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Target.transform.rotation, Time.deltaTime * 10);
-
+            FollowTarget(Target);
 
             if (Vector3.Distance(transform.position, Target.transform.position) <= _attackDistane + 0.3f) 
             {
                 if (_lastAttackTime <= 0)
                 {
-                    _animator.SetTrigger("Attack");
-                    Target.TakeDamage(_damage);
-                    _lastAttackTime = _attackDelay;
+                    Attack(Target);
                 }
             }
             else
@@ -64,12 +60,7 @@ public class PursuitState : State
         }
         else
         {
-            _agent.SetDestination(_lastTargetPosition);
-            if(transform.position == _lastTargetPosition)
-            {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Target.transform.rotation, Time.deltaTime * 100);
-                TargetLost?.Invoke();
-            }
+            LookAround();
         }
     }
 
@@ -79,6 +70,7 @@ public class PursuitState : State
         _targetIsVisible = _rayCheck.TargetIsVisible;
         _agent.speed = _speed;
     }
+
     private void OnDisable()
     {
         _rayCheck.TargetOutSight -= TargetOutSight;
@@ -87,5 +79,30 @@ public class PursuitState : State
     private void TargetOutSight(Vector3 lastTargetPosition)
     {
         _lastTargetPosition = lastTargetPosition;
+    }
+
+    private void FollowTarget(Player target)
+    {
+        Vector3 offset = (Target.transform.position - transform.position).normalized * _attackDistane;
+
+        _agent.SetDestination(target.transform.position - offset);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, target.transform.rotation, Time.deltaTime * 10);
+    }
+
+    private void Attack(Player target)
+    {
+        _animator.SetTrigger(AttackTrigger);
+        target.TakeDamage(_damage);
+        _lastAttackTime = _attackDelay;
+    }
+
+    private void LookAround()
+    {
+        _agent.SetDestination(_lastTargetPosition);
+        if (transform.position == _lastTargetPosition)
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Target.transform.rotation, Time.deltaTime * 100);
+            TargetLost?.Invoke();
+        }
     }
 }

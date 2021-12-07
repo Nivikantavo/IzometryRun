@@ -20,6 +20,7 @@ public class Enemy : Humanoid
     public float AttackDelay => _attackDelay;
     public int Damage => _damage;
     public float AttackDistance => _attackDistance;
+
     private void Awake()
     {
         _target = FindObjectOfType<Player>();

@@ -22,6 +22,7 @@ public class PlayerMovment : MonoBehaviour
 
         _agent.updateRotation = false;
     }
+
     private void Update()
     {
         if (_needMove)

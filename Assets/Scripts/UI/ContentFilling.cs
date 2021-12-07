@@ -11,6 +11,7 @@ public class ContentFilling : MonoBehaviour
     {
         LoadProgress();
     }
+
     private void Start()
     {
         for (int i = 0; i < _levels.Count; i++)
