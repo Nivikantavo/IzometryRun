@@ -63,6 +63,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Appodeal\Api\Appodeal\Appodeal.cs" />
+    <Compile Include="Assets\Appodeal\Api\ConsentManager\ConsentManager.cs" />
+    <Compile Include="Assets\Appodeal\Common\Appodeal\IAppodealAdsClient.cs" />
+    <Compile Include="Assets\Appodeal\Common\Appodeal\IBannerAdListener.cs" />
+    <Compile Include="Assets\Appodeal\Common\Appodeal\IInterstitialAdListener.cs" />
+    <Compile Include="Assets\Appodeal\Common\Appodeal\IMrecAdListener.cs" />
+    <Compile Include="Assets\Appodeal\Common\Appodeal\INonSkippableVideoAdListener.cs" />
+    <Compile Include="Assets\Appodeal\Common\Appodeal\IPermissionGrantedListener.cs" />
+    <Compile Include="Assets\Appodeal\Common\Appodeal\IRewardedVideoAdListener.cs" />
+    <Compile Include="Assets\Appodeal\Common\ConsentManager\IConsentFormListener.cs" />
+    <Compile Include="Assets\Appodeal\Common\ConsentManager\IConsentInfoUpdateListener.cs" />
+    <Compile Include="Assets\Appodeal\Common\ConsentManager\IConsentManager.cs" />
+    <Compile Include="Assets\Appodeal\Demo\Scripts\AppodealDemo.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AndroidAppodealClient.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealBannerCallbacks.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealInterstitialCallbacks.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealMrecCallbacks.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealNonSkippableVideoCallbacks.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealPermissionCallbacks.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\Appodeal\Android\AppodealRewardedVideoCallbacks.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\Appodeal\AppodealAdsClientFactory.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\Appodeal\Dummy\DummyClient.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\Appodeal\iOS\AppodealAdsClient.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\Appodeal\iOS\AppodealObjCBridge.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\ConsentManager\Android\AndroidConsentManagerClient.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\ConsentManager\Android\ConsentFormCallbacks.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\ConsentManager\Android\ConsentInfoUpdateCallbacks.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\ConsentManager\ConsentManagerClientFactory.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\ConsentManager\Dummy\Dummy.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\ConsentManager\iOS\ConsentManagerObjCBridge.cs" />
+    <Compile Include="Assets\Appodeal\Platforms\ConsentManager\iOS\iOSConsentManagerClient.cs" />
     <Compile Include="Assets\Scripts\Bezier.cs" />
     <Compile Include="Assets\Scripts\BezierMovment.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />

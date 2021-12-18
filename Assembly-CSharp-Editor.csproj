@@ -63,11 +63,49 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Appodeal\Editor\Checkers\CheckerWindow.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Checkers\ManifestChecker.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Checkers\MultidexActivator.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Checkers\PlatformChecker.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Checkers\PlayServicesChecker.cs" />
+    <Compile Include="Assets\Appodeal\Editor\InternalResources\AppodealSettings.cs" />
+    <Compile Include="Assets\Appodeal\Editor\NetworksManager\AppodealAdapterManager.cs" />
+    <Compile Include="Assets\Appodeal\Editor\NetworksManager\AppodealDependencyUtils.cs" />
+    <Compile Include="Assets\Appodeal\Editor\NetworksManager\Data\AppodealUnityPlugin.cs" />
+    <Compile Include="Assets\Appodeal\Editor\NetworksManager\Data\NetworkDependency.cs" />
+    <Compile Include="Assets\Appodeal\Editor\NetworksManager\EditorCoroutineExtensions.cs" />
+    <Compile Include="Assets\Appodeal\Editor\NetworksManager\EditorCoroutines.cs" />
+    <Compile Include="Assets\Appodeal\Editor\NetworksManager\XmlUtilities.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Utils\AppodealAssetsPostProcess.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Utils\AppodealEditorSettings.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Utils\AppodealInternalSettings.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Utils\AppodealPostProcess.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Utils\AppodealPreProcess.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Utils\AppodealUnityUtils.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Utils\ArchitectureFilter.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Utils\RemoveHelper.cs" />
+    <Compile Include="Assets\Appodeal\Editor\Utils\iOSPostprocessUtils.cs" />
     <Compile Include="Assets\Scripts\NavMeshComponents\Editor\NavMeshComponentsGUIUtility.cs" />
     <Compile Include="Assets\Scripts\NavMeshComponents\Editor\NavMeshLinkEditor.cs" />
     <Compile Include="Assets\Scripts\NavMeshComponents\Editor\NavMeshModifierEditor.cs" />
     <Compile Include="Assets\Scripts\NavMeshComponents\Editor\NavMeshModifierVolumeEditor.cs" />
     <Compile Include="Assets\Scripts\NavMeshComponents\Editor\NavMeshSurfaceEditor.cs" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\OguryDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\AdColonyDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\FacebookAudienceDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\MyTargetDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\GoogleAdMobDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\InternalResources\remove_list.xml" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\UnityDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\ConsentManagerDependencies\ConsentMangerDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\VungleDependencies.xml" />
+    <None Include="Assets\ExternalDependencyManager\Editor\external-dependency-manager_version-1.2.167_manifest.txt" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\BidMachineDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\YandexDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\IronSourceDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\AppLovinDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\AppodealDependencies.xml" />
+    <None Include="Assets\Appodeal\Editor\NetworkConfigs\AmazonAdsDependencies.xml" />
     <Reference Include="UnityEditor.TestRunner">
       <HintPath>D:/Projects/TLOU minimal (copy)/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
@@ -325,6 +363,21 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandler">
+      <HintPath>D:/Projects/TLOU minimal (copy)/Assets/ExternalDependencyManager/Editor/Google.VersionHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.IOSResolver">
+      <HintPath>D:/Projects/TLOU minimal (copy)/Assets/ExternalDependencyManager/Editor/1.2.167/Google.IOSResolver.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.JarResolver">
+      <HintPath>D:/Projects/TLOU minimal (copy)/Assets/ExternalDependencyManager/Editor/1.2.167/Google.JarResolver.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.PackageManagerResolver">
+      <HintPath>D:/Projects/TLOU minimal (copy)/Assets/ExternalDependencyManager/Editor/1.2.167/Google.PackageManagerResolver.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.VersionHandlerImpl">
+      <HintPath>D:/Projects/TLOU minimal (copy)/Assets/ExternalDependencyManager/Editor/1.2.167/Google.VersionHandlerImpl.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>D:/Projects/TLOU minimal (copy)/Library/PackageCache/com.unity.render-pipelines.core@7.1.8/Editor/ShaderGenerator/ICSharpCode.NRefactory.dll</HintPath>
